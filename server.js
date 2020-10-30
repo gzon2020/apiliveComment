@@ -37,25 +37,54 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/user', user);
 
+app.get("/webhooklcm",function(req,res){
+    if(req.query["hub.verify_token"]=="GzonApiliveComment"){
+        console.log('ok')
+       // res.json(req.query["hub.challenge"]);
+       var msg_events=req.body;
+       console.log(msg_events)
+    }
+ });
+ app.post("/webhooklcm" , function(req,res){
+     console.log("done");
+     var msg_events=req.body;
+     console.log(msg_events)
+     if(msg_events.object=='page'){
+         msg_events.entry[0].changes.forEach(element => {
+             if(element.field=='live_videos'){
+                 var val = element.value;
+                 console.log(val)
+             } else if(element.field=='feed'){
+                var val = element.value;
+                console.log(val)
+             }
+
+         });
+     }
+  });
 app.get("/webhook",function(req,res){
     if(req.query["hub.verify_token"]=="GzonApiliveComment")
     {
         res.send(req.query["hub.challenge"]);
     }
-   
- 
  });
  app.post("/webhook" , function(req,res){
      console.log("done");
-     var msg_events=req.body.entry;
-     msg_events.forEach(function(pageEntry){
-         pageEntry.messaging.forEach(function(msg){
-             console.log(msg);
-             res.sendStatus(200);
+     var msg_events=req.body;
+     console.log(msg_events)
+     if(msg_events.object=='page'){
+         msg_events.entry[0].changes.forEach(element => {
+             if(element.field=='live_videos'){
+                 var val = element.value;
+                 console.log(val)
+             } else if(element.field=='feed'){
+                var val = element.value;
+                console.log(val)
+             }
+
          });
-     });
- });
- 
+     }
+  });
 
 app.get("/", (req, res) => {
    res.json({ result: "ok", "data": "ok" })  
