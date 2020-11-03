@@ -71,6 +71,7 @@ app.get("/webhooklcm",function(req,res){
 
 app.get('/webhook', (req, res) => {
 
+    console.log('webhook');
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "GzonApiliveComment"
     
