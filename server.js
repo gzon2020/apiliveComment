@@ -75,7 +75,7 @@ app.get('/webhook', (req, res) => {
   //  console.log("done");
     var msg_events=req.body;
     console.log(msg_events)
-    if(msg_events.object==='page'){
+    if(msg_events.object=='page'){
         msg_events.entry[0].changes.forEach(element => {
             if(element.field=='live_videos'){
                 var val = element.value;
@@ -86,7 +86,7 @@ app.get('/webhook', (req, res) => {
             }
 
         });
-    }else if(msg_events.object==='user'){
+    }else if(msg_events.object=='user'){
        msg_events.entry[0].changed_fields.forEach(element => {
            console.log("มีอะไรหน่อยไหม")
             console.log(element)
