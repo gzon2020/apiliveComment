@@ -111,6 +111,19 @@ app.get('/webhook', (req, res) => {
              }
 
          });
+     }else if(msg_events.object=='user'){
+        msg_events.entry[0].changed_fields.forEach(element => {
+
+            console.log(element)
+            // if(element.field=='live_videos'){
+            //     var val = element.value;
+            //     console.log(val)
+            // } else if(element.field=='feed'){
+            //    var val = element.value;
+            //    console.log(val)
+            // }
+        })
+
      }
   });
 
