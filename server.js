@@ -37,31 +37,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/user', user);
 
-app.get("/webhooklcm",function(req,res){
-    if(req.query["hub.verify_token"]=="GzonApiliveComment"){
-        console.log('ok')
-       // res.json(req.query["hub.challenge"]);
-       var msg_events=req.body;
-       console.log(msg_events)
-    }
- });
- app.post("/webhooklcm" , function(req,res){
-     console.log("done");
-     var msg_events=req.body;
-     console.log(msg_events)
-     if(msg_events.object=='page'){
-         msg_events.entry[0].changes.forEach(element => {
-             if(element.field=='live_videos'){
-                 var val = element.value;
-                 console.log(val)
-             } else if(element.field=='feed'){
-                var val = element.value;
-                console.log(val)
-             }
-
-         });
-     }
-  });
 // app.get("/webhook",function(req,res){
 //     if(req.query["hub.verify_token"]=="GzonApiliveComment")
 //     {
@@ -97,35 +72,28 @@ app.get('/webhook', (req, res) => {
   }
 });
  app.post("/webhook" , function(req,res){
-     console.log("done");
-     var msg_events=req.body;
-     console.log(msg_events)
-     if(msg_events.object==='page'){
-         msg_events.entry[0].changes.forEach(element => {
-             if(element.field=='live_videos'){
-                 var val = element.value;
-                 console.log(val)
-             } else if(element.field=='feed'){
+  //  console.log("done");
+    var msg_events=req.body;
+    console.log(msg_events)
+    if(msg_events.object==='page'){
+        msg_events.entry[0].changes.forEach(element => {
+            if(element.field=='live_videos'){
                 var val = element.value;
                 console.log(val)
-             }
+            } else if(element.field=='feed'){
+               var val = element.value;
+               console.log(val)
+            }
 
-         });
-     }else if(msg_events.object==='user'){
-        msg_events.entry[0].changed_fields.forEach(element => {
-
+        });
+    }else if(msg_events.object==='user'){
+       msg_events.entry[0].changed_fields.forEach(element => {
+           console.log("มีอะไรหน่อยไหม")
             console.log(element)
-            // if(element.field=='live_videos'){
-            //     var val = element.value;
-            //     console.log(val)
-            // } else if(element.field=='feed'){
-            //    var val = element.value;
-            //    console.log(val)
-            // }
-        })
+       })
 
-     }
-  });
+    }
+ });
 
 app.get("/", (req, res) => {
    res.json({ result: "ok", "data": "ok" })  
