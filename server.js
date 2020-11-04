@@ -72,7 +72,7 @@ app.get('/webhook', (req, res) => {
   }
 });
  app.post("/webhook" , function(req,res){
-   console.log(req);
+  // console.log(req);
     var msg_events=req.body;
     console.log(msg_events)
     if(msg_events.object=='page'){
@@ -87,9 +87,11 @@ app.get('/webhook', (req, res) => {
 
         });
     }else if(msg_events.object=='user'){
+        
+        console.log(msg_events)
        msg_events.entry[0].changed_fields.forEach(element => {
            console.log("มีอะไรหน่อยไหม")
-            console.log(element.length)
+           console.log(element)         
        })
 
     }
