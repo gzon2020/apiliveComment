@@ -72,7 +72,7 @@ app.get('/webhook', (req, res) => {
   }
 });
  app.post("/webhook" , function(req,res){
-  //  console.log("done");
+   console.log(req);
     var msg_events=req.body;
     console.log(msg_events)
     if(msg_events.object=='page'){
