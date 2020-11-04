@@ -89,7 +89,9 @@ app.get('/webhook', (req, res) => {
     }else if(msg_events.object=='user'){
        msg_events.entry[0].changed_fields.forEach(element => {
            console.log("มีอะไรหน่อยไหม")
-            console.log(element)
+            element.forEach(ress=>{
+                console.log(ress)
+            })
        })
 
     }
