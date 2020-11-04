@@ -86,13 +86,12 @@ app.get('/webhook', (req, res) => {
             }
 
         });
-    }else if(msg_events.object=='user'){
-        
-        //console.log(msg_events)
-       msg_events.entry[0].changes.forEach(element => {
-           console.log("มีอะไรหน่อยไหม")
-           console.log(element)         
-       })
+    }else if(msg_events.object=='user'){  
+        console.log(msg_events)
+//        msg_events.entry[0].changes.forEach(element => {
+//            console.log("มีอะไรหน่อยไหม")
+//            console.log(element)         
+//        })
 
     }
  });
