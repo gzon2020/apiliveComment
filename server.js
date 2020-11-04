@@ -74,7 +74,7 @@ app.get('/webhook', (req, res) => {
  app.post("/webhook" , function(req,res){
   // console.log(req);
     var msg_events=req.body;
-    console.log(msg_events)
+   // console.log(msg_events)
     if(msg_events.object=='page'){
         msg_events.entry[0].changes.forEach(element => {
             if(element.field=='live_videos'){
